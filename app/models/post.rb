@@ -1,0 +1,1 @@
+class Post < Activerecord::Base
