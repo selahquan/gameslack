@@ -1,1 +1,3 @@
-class Post < Activerecord::Base
+class Post < ActiveRecord::Base
+    belongs_to :user
+end
