@@ -1,4 +1,4 @@
 Api.get_data.each do |hash|
-    Game.create(slug: hash["slug"], name: hash["name"], background_image: hash["background_image"], rating: hash["rating"])
+    Game.create(id: hash["id"], slug: hash["slug"], name: hash["name"], background_image: hash["background_image"], rating: hash["rating"], platform: hash["platform"], )
 end
 

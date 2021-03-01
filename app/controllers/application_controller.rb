@@ -1,4 +1,7 @@
 require './config/environment'
+require "./app/models/user"
+require "./app/models/post"
+require "./app/models/game"
 
 class ApplicationController < Sinatra::Base
 

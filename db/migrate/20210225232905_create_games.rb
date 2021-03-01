@@ -4,7 +4,7 @@ class CreateGames < ActiveRecord::Migration[5.2]
       t.string :slug
       t.string :name
       t.string :background_image
-      t.string :rating
+      t.string :rating 
 
     end
   end
