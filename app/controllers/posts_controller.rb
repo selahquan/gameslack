@@ -7,7 +7,7 @@ class PostsController < Sinatra::Base
 
   #display all posts
   get "/posts" do
-    @posts = Article.all
+    #@posts = Post.all
     erb :posts
   end
 
@@ -18,35 +18,41 @@ class PostsController < Sinatra::Base
 
   #create post
   post "/posts" do
-     #erb :posts
+    @posts = Posts.create(:title => params[:title], :content => params[:content])
+    redirect to "/posts/#{@posts.id}"
   end
 
   #display single post
   get "/posts/:id" do
     @post = Post.find_by_id(params[:id])
-    erb :show_posts
+    erb :show_post
   end
 
-  #edit post
+  #load edit post form
   get "/posts/:id/edit" do
+    @post = Post.find_by_id(params[:id])
     erb :editposts
   end
 
   #update post modifies existing post
-  post "/posts/:id" do
+  patch "/posts/:id" do
     @post = Post.find_by_id(params[:id])
-      erb :show_posts
+    @post.title = params[:title]
+    @post.content = params[:content]
+    @post.save
+    redirect to "/posts/#{@post.id}"
   end
 
   #update action replace post
-  post "/posts/:id" do
-    @post = Post.find_by_id(params[:id])
-    erb :show_posts
-  end
+  # post "/posts/:id" do
+  #   @post = Post.find_by_id(params[:id])
+  #   erb :show_posts
+  # end
 
   #delete post
   post "/posts/:id" do
     @post = Post.find_by_id(params[:id])
-    erb :show_posts
+    @post.delete
+    redirect to '/posts'
   end
 end
