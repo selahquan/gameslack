@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_01_174233) do
+ActiveRecord::Schema.define(version: 2021_03_01_223337) do
 
   create_table "games", force: :cascade do |t|
     t.string "slug"
@@ -19,6 +19,9 @@ ActiveRecord::Schema.define(version: 2021_03_01_174233) do
     t.string "rating"
     t.string "genre"
     t.string "clips"
+    t.string "platform"
+    t.string "genres"
+    t.string "clip"
   end
 
   create_table "posts", force: :cascade do |t|

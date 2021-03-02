@@ -1,4 +1,18 @@
-Api.get_data.each do |hash|
-    Game.create(id: hash["id"], slug: hash["slug"], name: hash["name"], background_image: hash["background_image"], rating: hash["rating"], platform: hash["platform"], genres: hash["genres"], clip: hash["clip"], )
-end
+ Api.get_data.each do |hash|
+        platforms_array = hash["platforms"].map do |platform|
+            platform["platform"]["name"]
+        end 
+    
+        genres_array = hash["genres"].map do |genre|
+            genre["name"]
+        end
+
+        clips_array = hash["clip"].each_value do |clip|
+            clip
+        end
+
+         Game.create(slug: hash["slug"], name: hash["name"], background_image: hash["background_image"], rating: hash["rating"], platform: platforms_array, genre: genres_array, clip: clips_array)
+ end
+
+ 
 

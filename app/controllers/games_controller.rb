@@ -1,4 +1,4 @@
-class PostsController < Sinatra::Base
+class GamesController < Sinatra::Base
 
     configure do
       set :public_folder, 'public'
@@ -7,7 +7,7 @@ class PostsController < Sinatra::Base
 
     #display available games
     get "/games" do
-      @games = Game.all
+      #@games = Game.all
         erb :games
       end
 
