@@ -1,24 +1,28 @@
-class PostsController < Sinatra::Base
+class PostsController < ApplicationController
 
-  configure do
-    set :public_folder, 'public'
-    set :views, 'app/views'
-  end
+  # configure do
+  #   set :public_folder, 'public'
+  #   set :views, 'app/views'
+  # end
 
   #display all posts
   get "/posts" do
-    #@posts = Post.all
+    @posts = Post.all
     erb :posts
   end
 
   #display create post form
   get "/posts/new" do
-    erb :new_posts
+    if !logged_in?
+    redirect "/login"
+    else
+    erb :posts_new
+    end
   end
 
   #create post
   post "/posts" do
-    @posts = Posts.create(:title => params[:title], :content => params[:content])
+    @posts = Posts.create(:title => params[:title], :content => params[:content], :user_id =>session[user_id])
     redirect to "/posts/#{@posts.id}"
   end
 
@@ -30,8 +34,15 @@ class PostsController < Sinatra::Base
 
   #load edit post form
   get "/posts/:id/edit" do
-    @post = Post.find_by_id(params[:id])
-    erb :editposts
+    if !logged_in?
+      redirect "/login"
+    else
+      if post = current_user.posts.find_by(params[:id])
+       erb :editposts
+      else
+        redirect '/posts'
+      end
+    end
   end
 
   #update post modifies existing post

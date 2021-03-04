@@ -7,13 +7,13 @@ class GamesController < Sinatra::Base
 
     #display available games
     get "/games" do
-      #@games = Game.all
-        erb :games
-      end
+      @games = Game.all
+      erb :games
+    end
 
     #display game details
     get "/games/:id" do
-      @games = Game.find_by_id(params[:id])
+      @game = Game.find_by_id(params[:id])
         erb :games_details
       end
 
