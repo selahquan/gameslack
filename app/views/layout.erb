@@ -24,10 +24,16 @@
     </div>
     <div class="navbar">
       <ul>
-        <li><a href="/">HOME</></li>
-        <li><a href="/games">GAMES</></li>
-        <li><a href="/posts">POSTS</></li>
+        <% if !logged_in? %> 
+        <li><a href="/login">LOG IN</></li>
+        <%end%>
+        <% if logged_in? %> 
+        <li><a href="/logout">LOG OUT</></li>
+        <%end%>
         <li><a href="/account">ACCOUNT</></li>
+        <li><a href="/posts">POSTS</></li>
+        <li><a href="/games">GAMES</></li>
+        <li><a href="/">HOME</></li>
       </ul>
     </div>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>

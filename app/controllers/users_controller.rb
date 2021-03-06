@@ -2,35 +2,22 @@ require './config/environment'
 require "./app/models/user"
 
 class UsersController < ApplicationController
-    
-    get '/login' do 
-        erb :login
-      end
-    
-    post "/login" do
-        if login(params[:email], params[:password])
-            redirect "/posts"
-        else
-            redirect "/failure"
-         end
-      end
 
     get '/signup' do
         erb :signup
       end
     
     post '/signup' do
-        @user = User.new
-        @user.email = params[:email]
-        @user.password = params[:password]
-        if @user.save
-            redirect '/login'
+        @user = User.new(params)
+        if !@user.email.empty? && !@user.password.empty? && !@user.email.find_by_email(params[:email])
+          @user.save
+          redirect '/login'
         else
             redirect '/failure'
         end
     end
 
-    get "/account" do
+    get "/account" do 
         if logged_in?
           erb :account
         else
@@ -38,8 +25,11 @@ class UsersController < ApplicationController
         end
       end
 
-      get "/logout" do
-        logout
-        redirect "/"
+    patch "/account" do
+      if logged_in?
+        current_user.email = params[:email]
+      else
+      redirect "/login"
       end
+    end
 end

@@ -1,5 +1,13 @@
 <h1>Welcome</h1>
 
-<p>We are currently working on your account.</p>
+<p><%=current_user.email%> is currently logged in.</p>
+<br>
+<form action="/account" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="patch"/>
 
-<p><a href="/logout">Log Out</a></p>
+    <label for="email">Email</label>
+  <input type="text" id="email" name="email" value="<%=current_user.email%>"/>
+
+  <input type="submit" value="UPDATE EMAIL"/>
+</form>
+

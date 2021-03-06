@@ -1,1 +1,14 @@
-<h2>Welcome to posts!</h2>
+<h1>Posts</h1>
+
+<h4><%@posts.each do |post|%>
+    <a href="/posts/<%=post.id%>"><%=post.title%></a>
+    <br>
+    <br>
+    <%=post.content%>
+    <%end%>
+</h4>
+<% if logged_in? %>
+    <form method="GET" action="/posts/new">
+        <input type="submit" value="Create Post"/>
+    </form>
+<% end %>

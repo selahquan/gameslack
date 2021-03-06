@@ -1,9 +1,5 @@
 class PostsController < ApplicationController
 
-  # configure do
-  #   set :public_folder, 'public'
-  #   set :views, 'app/views'
-  # end
 
   #display all posts
   get "/posts" do
@@ -14,54 +10,50 @@ class PostsController < ApplicationController
   #display create post form
   get "/posts/new" do
     if !logged_in?
-    redirect "/login"
+      redirect 'login'
+      #flash message you must be logged in to post.
     else
-    erb :posts_new
+      erb :posts_new
     end
   end
 
   #create post
-  post "/posts" do
-    @posts = Posts.create(:title => params[:title], :content => params[:content], :user_id =>session[user_id])
-    redirect to "/posts/#{@posts.id}"
-  end
-
-  #display single post
-  get "/posts/:id" do
-    @post = Post.find_by_id(params[:id])
-    erb :show_post
-  end
-
-  #load edit post form
-  get "/posts/:id/edit" do
-    if !logged_in?
-      redirect "/login"
-    else
-      if post = current_user.posts.find_by(params[:id])
-       erb :editposts
-      else
-        redirect '/posts'
-      end
-    end
-  end
-
-  #update post modifies existing post
-  patch "/posts/:id" do
-    @post = Post.find_by_id(params[:id])
-    @post.title = params[:title]
-    @post.content = params[:content]
+  post '/posts' do
+    @post = Post.create(params)
+    @post.user_id = current_user.id
     @post.save
     redirect to "/posts/#{@post.id}"
   end
 
-  #update action replace post
-  # post "/posts/:id" do
-  #   @post = Post.find_by_id(params[:id])
-  #   erb :show_posts
-  # end
+  #view post
+  get "/posts/:id" do
+    @post = Post.find(params[:id])
+    erb :posts_show
+  end
+
+  #edit post
+  patch 'posts/:id' do
+    @post = Post.find_by_id(params[:id])
+    @post.title = params[:title]
+    @post.content = params[:content]
+    @post.user_id = params[:user_id]
+    @post.save
+    redirect to "/posts/#{@post.id}"
+  end
+
+  #load edit post form
+  get "/posts/:id/edit" do
+    @post = Post.find_by_id(params[:id])
+    if @post.user_id == current_user.id
+      erb :posts_edit
+    else
+      redirect '/posts'
+      #flash message you must be logged in to post.
+    end
+  end
 
   #delete post
-  post "/posts/:id" do
+  delete "/posts/:id" do
     @post = Post.find_by_id(params[:id])
     @post.delete
     redirect to '/posts'

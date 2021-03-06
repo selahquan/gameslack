@@ -7,7 +7,9 @@ require './app/controllers/users_controller'
 #  raise 'Migrations are pending. Run `rake db:migrate` to resolve the issue.'
 #end
 
+use Rack::MethodOverride
 use PostsController
 use GamesController
 use UsersController
+use SessionsController
 run ApplicationController

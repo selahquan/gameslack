@@ -1,1 +1,9 @@
-<h2>Welcome to games!</h2>
+<h1>Game Posts</h1>
+
+<h4><%@game.each do |game|%>
+    <a href="/game/<%=game.id%>"><%=game.title%></a>
+    <br>
+    <br>
+    <%=post.content%>
+    <%end%>
+</h4>
