@@ -10,6 +10,7 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions
     set :session_secret, "gameslack"
+    register Sinatra::Flash
   end
 
   get "/" do
@@ -41,7 +42,6 @@ class ApplicationController < Sinatra::Base
 
     def current_user
       @current_user ||= User.find_by(:email => session[:email]) if session[:email]
-      #User.find(session[:user_id])
     end
   end
 

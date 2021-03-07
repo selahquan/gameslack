@@ -9,10 +9,11 @@ class UsersController < ApplicationController
     
     post '/signup' do
         @user = User.new(params)
-        if !@user.email.empty? && !@user.password.empty? && !@user.email.find_by_email(params[:email])
+        if !@user.email.blank? && !@user.password.blank? && !@user.email.find_by_email(params[:email])
           @user.save
           redirect '/login'
         else
+          flash[:error] = "Invalid email or password. Or user already exists."
             redirect '/failure'
         end
     end
