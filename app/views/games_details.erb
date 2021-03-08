@@ -1,16 +1,17 @@
-<h2>Game Details</h2>
-
-
-<h4><%= @game.name %></h4>
+<h1><%=@game.name%></h1>
 <br>
-<br>
-<h6><%= @game.platform %></h6>
-<br>
-
-<% if current_user && @post.user==current_user%>
-<form method="GET" action="/posts/<%=params[:id]%>/edit">
-  <input type="submit" value="edit"/>
-</form>
-<%end%>
-
-<br>
+<h4>
+    <%=@game[:rating]%>
+    <br>
+    <%=@game[:genre]%>
+    <br>
+    <%=@game[:platform]%>
+    <video width="320" height="240" controls>
+        <source src="<%@game.clip.clip%>" type="video/mp4">
+    
+</h4>
+<% if logged_in? %>
+    <form method="GET" action="/games">
+        <input type="submit" value="Add Game"/>
+    </form>
+<% end %>

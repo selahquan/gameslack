@@ -1,4 +1,4 @@
-class GamesController < Sinatra::Base
+class GamesController < ApplicationController
 
     configure do
       set :public_folder, 'public'

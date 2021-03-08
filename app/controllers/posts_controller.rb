@@ -29,28 +29,14 @@ class PostsController < ApplicationController
 
   #view post
   get "/posts/:id" do
-    @post = Post.find(params[:id])
+    @post = get_post
     erb :posts_show
-  end
-
-  #edit post
-  patch 'posts/:id' do
-    @post = Post.find_by_id(params[:id])
-    if @post.user_id == current_user.email
-      @post.title = params[:title]
-      @post.content = params[:content]
-      @post.user_id = params[:user_id]
-      @post.save
-      redirect to "/posts/#{@post.id}"
-    else
-      redirect '/posts'
-    end
   end
 
   #load edit post form
   get "/posts/:id/edit" do
-    @post = Post.find_by_id(params[:id])
-    if logged_in? && @post.user_id == session[:email]
+    get_post
+    if logged_in? && @post.user_id == current_user.id
       erb :posts_edit
     else
       flash[:error] = "You must be logged in to edit post."
@@ -58,15 +44,20 @@ class PostsController < ApplicationController
     end
   end
 
+  patch '/post/:id' do
+    get_post
+    @post.update(title: params[:title], content: params[:content])
+    redirect '/posts'
+  end
+
   #delete post
-  delete "/posts/:id" do
-    @post = Post.find_by_id(params[:id])
+  delete "/post/:id" do
+    get_post
     if @post.user_id == current_user.id
-      @post.delete
-      redirect to '/posts'
+      @post.destroy
     else
       flash[:error] = "You can only delete posts that you created."
-      redirect '/posts'
     end
+    redirect to '/posts'
   end
 end

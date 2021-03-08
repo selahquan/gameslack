@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
         if login(params[:email], params[:password])
             redirect "/posts"
         else
-          flash[:error] = "Invalid email or password."
+          #flash[:error] = "Invalid email or password."
           redirect "/failure"
          end
       end

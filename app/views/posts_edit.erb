@@ -1,16 +1,21 @@
 <h1>Update Post</h1>
 <br>
 
-<h2>Edits for <%= @post.title %></h2>
+<h2>Edit <%= @post.title %></h2>
 
-  <form action="/post/<%= @post.id %>" method="POST">
-    <input id="hidden" type="hidden" name="_method" value="patch">
+  <form method="POST" action="/post/<%=@post.id%>">
+    <input type="hidden" name="_method" value="patch">
     <label>Edit the Title:</label>
     <br>
-    <input type="text" name="post[title]" value="<%= @post.title %>">
+    <input type="text" name="title" value="<%= @post.title %>">
     <label>Edit the Content:</label>
     <br>
-    <input type="text" name="post[content]" value="<%= @post.content %>">
+    <input type="text" name="content" value="<%= @post.content %>">
 
     <input type="submit" value="Update Post">
   </form>
+
+<form method="POST" action="/post/<%=@post.id%>">
+  <input type="hidden" name="_method" value="delete" />
+  <input type="submit" value="delete post" />
+</form>

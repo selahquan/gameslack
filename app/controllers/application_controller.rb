@@ -21,6 +21,8 @@ class ApplicationController < Sinatra::Base
     erb :failure
   end
 
+  
+
   helpers do
 
     def login(email, password)
@@ -43,7 +45,10 @@ class ApplicationController < Sinatra::Base
     def current_user
       @current_user ||= User.find_by(:email => session[:email]) if session[:email]
     end
+
+    def get_post
+      @post = Post.find_by_id(params[:id])
+    end
   end
 
 end
- 

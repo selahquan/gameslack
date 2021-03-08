@@ -1,9 +1,13 @@
-<h1>Game Posts</h1>
-
-<h4><%@game.each do |game|%>
-    <a href="/game/<%=game.id%>"><%=game.title%></a>
+<h1>Games</h1>
+<br>
+<h4><%@games.each do |game|%>
+    <a href="/games/<%=game.id%>"><%=game.name%></a>
     <br>
+    <%=game[:rating]%>
     <br>
-    <%=post.content%>
+    <%=game[:genre]%>
+    <br>
+    <video width="320" height="240" controls>
+        <source src="<%=game.clip%>" type="video/mp4">
     <%end%>
 </h4>
