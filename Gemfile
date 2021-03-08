@@ -6,7 +6,6 @@ gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
 gem 'rest-client'
 gem 'rake'
 gem 'require_all'
-gem 'sqlite3'
 gem 'thin'
 gem 'shotgun'
 gem 'pry'
@@ -14,4 +13,12 @@ gem 'bcrypt'
 gem 'tux'
 gem 'json'
 gem 'sinatra-flash'
-#gem 'pg'
+
+group :development do
+    gem 'sqlite3'
+ end
+ 
+ group :production do
+    gem 'pg'
+    gem 'activerecord-postgresql-adapter'
+ end
