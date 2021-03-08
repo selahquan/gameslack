@@ -1,14 +1,23 @@
-<h1>Posts</h1>
-<br>
-<h4><%@posts.each do |post|%>
-    <a href="/posts/<%=post.id%>"><%=post.title%></a>
+<div class="post-left-bar">
+    <div class="content-head">
+        <h1>Posts</h1>
+    </div>
     <br>
-    <br>
-    <%=post.content%>
-    <%end%>
-</h4>
-<% if logged_in? %>
-    <form method="GET" action="/posts/new">
+</div>
+
+<div class="post-right-bar">
+    <div class="content-subhead">
+        <h4><%@posts.each do |post|%>
+                <a href="/posts/<%=post.id%>"><%=post.title%></a>
+                <br>
+                <br>
+                <%=post.content%>
+            <%end%>
+        </h4>
+    </div>
+    <% if logged_in? %>
+        <form method="GET" action="/posts/new">
         <input type="submit" value="Create Post"/>
-    </form>
-<% end %>
+        </form>
+    <% end %>
+</div>

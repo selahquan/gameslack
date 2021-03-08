@@ -46,8 +46,15 @@ label {
   text-align: center;
 }
 
+.post-left-bar {
+  width: 25%;
+  display: block;
+}
 
-
+.post-right-bar {
+  width: 75%;
+  display: block;
+}
 /*
 * -- PURE FORM STYLES --
 * Style the form inputs and labels
@@ -207,11 +214,14 @@ a.pure-button-primary {
 
 /* This is the subheading that appears on the blue section */
 .splash-subhead {
-  color: white;
+  color: rgb(246, 246, 246);
   letter-spacing: 0.05em;
   opacity: 0.8;
 }
 
+ .splash-subhead-p {
+  color: #1f8dd6 !important;
+}
 /*
 * -- CONTENT STYLES --
 * This represents the content area (everything below the blue section)
