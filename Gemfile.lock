@@ -7,6 +7,8 @@ GEM
       activemodel (= 5.2.4.5)
       activesupport (= 5.2.4.5)
       arel (>= 9.0)
+    activerecord-postgresql-adapter (0.0.1)
+      pg
     activesupport (5.2.4.5)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
@@ -35,6 +37,7 @@ GEM
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
     netrc (0.11.0)
+    pg (1.2.3)
     pry (0.14.0)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -94,8 +97,10 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord (~> 5.2)
+  activerecord-postgresql-adapter
   bcrypt
   json
+  pg
   pry
   rake
   require_all
