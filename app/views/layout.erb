@@ -19,12 +19,17 @@
         <div class="navbar">
           <ul class="pure-menu-list">
             <% if !logged_in? %> 
+              <li><a href="/signup">SIGN UP</a></li>
+            <% end %>
+            <% if !logged_in? %> 
               <li><a href="/login">LOG IN</a></li>
             <% end %>
             <% if logged_in? %> 
               <li><a href="/logout">LOG OUT</a></li>
             <% end %>
-            <li><a href="/account">ACCOUNT</a></li>
+            <% if logged_in? %>
+              <li><a href="/account">ACCOUNT</a></li>
+            <% end %>
             <li><a href="/posts">POSTS</a></li>
             <!--<li><a href="/games">GAMES</a></li>-->
             <li><a href="/">HOME</a></li>

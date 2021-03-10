@@ -13,6 +13,7 @@ gem 'bcrypt'
 gem 'tux'
 gem 'json'
 gem 'sinatra-flash'
+gem 'faker'
 
 group :development do
     gem 'sqlite3'

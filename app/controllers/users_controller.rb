@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     
     post '/signup' do
         @user = User.new(params)
-        if !@user.email.blank? && !@user.password.blank? && !@user.email.find_by_email(params[:email])
+        if !params[:email].blank? && !params[:password].blank? && !User.all.any? {|hash| hash['email'] == params[:email]}
           @user.save
           redirect '/login'
         else

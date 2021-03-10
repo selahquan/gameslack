@@ -23,6 +23,8 @@ GEM
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     eventmachine (1.2.7)
+    faker (2.16.0)
+      i18n (>= 1.6, < 2)
     http-accept (1.7.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
@@ -99,6 +101,7 @@ DEPENDENCIES
   activerecord (~> 5.2)
   activerecord-postgresql-adapter
   bcrypt
+  faker
   json
   pg
   pry
