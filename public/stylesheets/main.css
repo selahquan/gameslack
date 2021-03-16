@@ -4,6 +4,18 @@
   box-sizing: border-box;
 }
 
+.body-wrap {
+  width: 100%;
+  float: left;
+}
+
+.body-center {
+  width: 100%;
+  float: left;
+  padding: 3.2rem;
+  clear: both;
+  
+}
 /*
 * -- BASE STYLES --
 * Most of these are inherited from Base, but I want to change a few.
