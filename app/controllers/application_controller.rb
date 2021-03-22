@@ -49,6 +49,20 @@ class ApplicationController < Sinatra::Base
     def get_post
       @post = Post.find_by_id(params[:id])
     end
+
+    def redirect_if_not_owner
+      if @post.user_id != current_user.id
+          flash[:error] = "You can not edit post that don't belong to you."
+          redirect '/posts'
+        end
+    end
+
+    def redirect_if_not_logged_in
+      unless current_user
+          flash[:error] = "You are not logged in."
+          redirect '/posts'
+        end
+    end
   end
 
 end
