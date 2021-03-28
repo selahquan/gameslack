@@ -9,9 +9,8 @@ class PostsController < ApplicationController
 
   #display create post form
   get "/posts/new" do
-    get_post
     redirect_if_not_logged_in
-    redirect 'login'
+    erb :posts_new
   end
 
   #create post
@@ -35,7 +34,6 @@ class PostsController < ApplicationController
     get_post
     redirect_if_not_owner
     erb :posts_edit
-    
     
     # if logged_in? && @post.user_id == current_user.id
     #   erb :posts_edit

@@ -10,8 +10,7 @@ class SessionsController < ApplicationController
         if login(params[:email], params[:password])
             redirect "/posts"
         else
-          #flash[:error] = "Invalid email or password."
-          redirect "/failure"
+          redirect_if_not_logged_in
          end
       end
 
